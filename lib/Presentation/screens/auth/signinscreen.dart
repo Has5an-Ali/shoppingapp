@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
@@ -23,6 +24,8 @@ class Signinscreen extends StatelessWidget {
         body: Column(
           children: [
             Container(
+              height: Get.height / 3,
+              width: Get.width / 1,
               color: AppConstant.appmaincolor,
               child: Lottie.asset('assets/images/splashicon.json'),
             ),

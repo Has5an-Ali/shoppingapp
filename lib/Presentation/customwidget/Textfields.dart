@@ -5,9 +5,11 @@ import 'package:shoppingapp/utils/appconstant.dart';
 
 class customtextfield extends StatelessWidget {
   final String text;
-  final String iconpath;
-  const customtextfield(
-      {super.key, required this.text, required this.iconpath});
+
+  const customtextfield({
+    super.key,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,6 @@ class customtextfield extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: TextFormField(
         decoration: InputDecoration(
-          prefix: Icon(iconpath),
           hintText: text,
           border: OutlineInputBorder(
               borderSide: BorderSide(color: AppConstant.appmaincolor)),
