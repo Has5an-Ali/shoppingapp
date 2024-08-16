@@ -39,16 +39,34 @@ class Signinscreen extends StatelessWidget {
               height: 30,
             ),
             customtextfield(
-              text: '  Email',
-              Prefixicon: Icon(Icons.email),
+              text: '  Full Name ',
               Obscuretext: false,
+              Prefixicon: Icon(Icons.person),
+              type: TextInputType.name,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            customtextfield(
+              text: '  Email  ',
+              Obscuretext: false,
+              Prefixicon: Icon(Icons.email),
               type: TextInputType.emailAddress,
             ),
             SizedBox(
               height: 20,
             ),
             customtextfield(
-              text: '   Password',
+              text: '   Phone  ',
+              Prefixicon: Icon(Icons.phone),
+              Obscuretext: true,
+              type: TextInputType.phone,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            customtextfield(
+              text: '    Password  ',
               Prefixicon: Icon(Icons.password),
               Obscuretext: true,
               type: TextInputType.text,

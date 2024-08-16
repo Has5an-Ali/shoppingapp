@@ -6,13 +6,15 @@ import 'package:shoppingapp/utils/appconstant.dart';
 class customtextfield extends StatelessWidget {
   final String text;
   final Icon? Prefixicon;
-  final Icon? Suffixicon;
+  final TextInputType type;
+  final bool Obscuretext;
 
   const customtextfield({
     super.key,
     required this.text,
     this.Prefixicon,
-    this.Suffixicon,
+    required this.Obscuretext,
+    required this.type,
   });
 
   @override
@@ -20,9 +22,10 @@ class customtextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: TextFormField(
+        obscureText: Obscuretext,
+        keyboardType: type,
         decoration: InputDecoration(
-          suffix: Suffixicon,
-          prefix: Prefixicon,
+          prefixIcon: Prefixicon,
           hintText: text,
           border: OutlineInputBorder(
               borderSide: BorderSide(color: AppConstant.appmaincolor)),
