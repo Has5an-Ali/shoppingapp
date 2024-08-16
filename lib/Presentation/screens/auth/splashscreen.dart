@@ -22,7 +22,7 @@ class _SplashscreenState extends State<Splashscreen> {
     Timer(
       const Duration(seconds: 3),
       () {
-        Get.to(() => const Signinscreen());
+        Get.off(() => const Signinscreen());
       },
     );
   }

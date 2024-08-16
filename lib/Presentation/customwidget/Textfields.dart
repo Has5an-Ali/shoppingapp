@@ -20,6 +20,12 @@ class customtextfield extends StatelessWidget {
           hintText: text,
           border: OutlineInputBorder(
               borderSide: BorderSide(color: AppConstant.appmaincolor)),
+          focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: AppConstant.appmaincolor, width: 2)),
+          enabledBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: AppConstant.appmaincolor, width: 2)),
         ),
       ),
     );
