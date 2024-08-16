@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
-import 'Welcomescreen.dart';
+import 'signinscreen.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -22,7 +22,7 @@ class _SplashscreenState extends State<Splashscreen> {
     Timer(
       const Duration(seconds: 3),
       () {
-        Get.to(() => const Welcomescreen());
+        Get.to(() => const Signinscreen());
       },
     );
   }
