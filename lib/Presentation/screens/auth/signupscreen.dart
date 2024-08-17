@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -8,9 +8,10 @@ import 'package:shoppingapp/Presentation/customwidget/Button.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../customwidget/Textfields.dart';
+import 'signinscreen.dart';
 
-class Signinscreen extends StatelessWidget {
-  const Signinscreen({super.key});
+class signupscreen extends StatelessWidget {
+  const signupscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Signinscreen extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Sign In ',
+            'Sign Up  ',
             style: TextStyle(color: AppConstant.textcolor),
           ),
           elevation: 30,
@@ -27,14 +28,6 @@ class Signinscreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            isKeyboardVisible
-                ? Text("Welcome Back ")
-                : Container(
-                    height: Get.height / 3,
-                    width: Get.width / 1,
-                    color: AppConstant.appmaincolor,
-                    child: Lottie.asset('assets/images/splashicon.json'),
-                  ),
             SizedBox(
               height: 30,
             ),
@@ -74,21 +67,26 @@ class Signinscreen extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            Button(text: "Sign In ", onPressed: () {}),
+            Button(text: "Sign Up ", onPressed: () {}),
             SizedBox(
               height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have account"),
+                Text("Already Account "),
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "Click Here",
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => Signinscreen());
+                  },
+                  child: Text(
+                    "Click Here",
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             )

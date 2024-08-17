@@ -5,6 +5,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/Presentation/customwidget/Button.dart';
+import 'package:shoppingapp/Presentation/screens/auth/signupscreen.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../customwidget/Textfields.dart';
@@ -67,10 +68,15 @@ class Signinscreen extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "Click Here",
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => signupscreen());
+                  },
+                  child: Text(
+                    "Click Here",
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             )
