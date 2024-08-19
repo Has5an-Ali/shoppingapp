@@ -41,7 +41,7 @@ class Welcomescreen extends StatelessWidget {
           Iconbutton(
               text: 'Sign in  with Email ',
               onPressed: () {},
-              path: 'assets/images/mail.png')
+              path: 'assets/images/mail.png'),
         ],
       ),
     );
