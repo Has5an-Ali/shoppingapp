@@ -13,18 +13,18 @@ class GoogleSigin extends GetxController {
       final GoogleSignInAccount? googleSignInAccount =
           await googlesignin.signIn();
 
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
+      // if (googleSignInAccount != null) {
+      //   final GoogleSignInAuthentication googleSignInAuthentication =
+      //       await googleSignInAccount.authentication;
 
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-        );
+      //   final AuthCredential credential = GoogleAuthProvider.credential(
+      //     idToken: googleSignInAuthentication.idToken,
+      //     accessToken: googleSignInAuthentication.accessToken,
+      //   );
 
-        final UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-      }
+      //   final UserCredential userCredential =
+      //       await _auth.signInWithCredential(credential);
+      // }
     } catch (e) {
       print("Error $e");
     }
