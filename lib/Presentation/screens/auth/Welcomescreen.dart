@@ -1,14 +1,18 @@
-// ignore_for_file: file_names, prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
+import '../../../controller/googlesignin.dart';
 import '../../customwidget/Iconbutton.dart';
 
 class Welcomescreen extends StatelessWidget {
-  const Welcomescreen({super.key});
+  Welcomescreen({super.key});
+
+  final GoogleSiginController _googleSiginController =
+      Get.put(GoogleSiginController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,9 @@ class Welcomescreen extends StatelessWidget {
           ),
           Iconbutton(
             text: "Sign in  with Google",
-            onPressed: () {},
+            onPressed: () {
+              _googleSiginController.Signinwithgoogle();
+            },
             path: 'assets/images/icon.png',
           ),
           SizedBox(
