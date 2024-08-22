@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shoppingapp/Presentation/screens/auth/signinscreen.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../../controller/googlesignin.dart';
@@ -46,7 +47,9 @@ class Welcomescreen extends StatelessWidget {
           ),
           Iconbutton(
               text: 'Sign in  with Email ',
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => Signinscreen());
+              },
               path: 'assets/images/mail.png'),
         ],
       ),
