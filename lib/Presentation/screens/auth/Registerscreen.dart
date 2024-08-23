@@ -101,7 +101,12 @@ class Registerscreen extends StatelessWidget {
                         await signinwithemail.SigninMethod(
                             name, email, phone, password, userDeviceToken);
                   }
-                  if (UserCredential != null) {}
+                  if (UserCredential != null) {
+                    Get.snackbar("Email Verification", "Pleas check your email",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppConstant.appmaincolor,
+                        colorText: Colors.white);
+                  }
                 }),
             SizedBox(
               height: 30,
