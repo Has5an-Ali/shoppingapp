@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoppingapp/model/usermodel.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 class Signinwithemail extends GetxController {
@@ -19,6 +20,7 @@ class Signinwithemail extends GetxController {
     String userDeviceToken,
   ) async {
     try {
+      EasyLoading.show(status: 'Please Wait..');
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
               email: Useremail, password: Userpassword);
@@ -39,7 +41,15 @@ class Signinwithemail extends GetxController {
           isActive: true,
           createdOn: DateTime.now(),
           city: '');
+
+      firestore
+          .collection('User')
+          .doc(userCredential.user!.uid)
+          .set(userModel.toMap());
+      EasyLoading.dismiss();
+      return userCredential;
     } on FirebaseAuthException catch (e) {
+      EasyLoading.dismiss();
       Get.snackbar("Error", "$e",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: AppConstant.appmaincolor,

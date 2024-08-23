@@ -12,7 +12,6 @@ import 'Registerscreen.dart';
 
 class Signinscreen extends StatelessWidget {
   const Signinscreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
@@ -44,6 +43,7 @@ class Signinscreen extends StatelessWidget {
               Prefixicon: Icon(Icons.email),
               Obscuretext: false,
               type: TextInputType.emailAddress,
+              Controller: null,
             ),
             SizedBox(
               height: 20,
@@ -53,6 +53,7 @@ class Signinscreen extends StatelessWidget {
               Prefixicon: Icon(Icons.password),
               Obscuretext: true,
               type: TextInputType.text,
+              Controller: null,
             ),
             SizedBox(
               height: 25,

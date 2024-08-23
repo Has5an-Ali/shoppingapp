@@ -8,6 +8,7 @@ class customtextfield extends StatelessWidget {
   final Icon? Prefixicon;
   final TextInputType type;
   final bool Obscuretext;
+  final TextEditingController? Controller;
 
   const customtextfield({
     super.key,
@@ -15,6 +16,7 @@ class customtextfield extends StatelessWidget {
     this.Prefixicon,
     required this.Obscuretext,
     required this.type,
+    required this.Controller,
   });
 
   @override
@@ -22,6 +24,7 @@ class customtextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: TextFormField(
+        controller: Controller,
         obscureText: Obscuretext,
         keyboardType: type,
         decoration: InputDecoration(
