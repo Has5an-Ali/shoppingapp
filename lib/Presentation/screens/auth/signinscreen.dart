@@ -5,10 +5,10 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/Presentation/customwidget/Button.dart';
-import 'package:shoppingapp/Presentation/screens/auth/signupscreen.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../customwidget/Textfields.dart';
+import 'Registerscreen.dart';
 
 class Signinscreen extends StatelessWidget {
   const Signinscreen({super.key});
@@ -68,9 +68,13 @@ class Signinscreen extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                GestureDetector(
+                InkWell(
                   onTap: () {
-                    Get.to(() => signupscreen());
+                    print("Navigating to Register screen");
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => Registerscreen()),
+                    );
                   },
                   child: Text(
                     "Click Here",

@@ -10,25 +10,24 @@ import 'package:shoppingapp/utils/appconstant.dart';
 import '../../customwidget/Textfields.dart';
 import 'signinscreen.dart';
 
-class signupscreen extends StatelessWidget {
-  const signupscreen({super.key});
+class Registerscreen extends StatelessWidget {
+  const Registerscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-      return SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Sign Up  ',
-              style: TextStyle(color: AppConstant.textcolor),
-            ),
-            elevation: 30,
-            centerTitle: true,
-            backgroundColor: AppConstant.appmaincolor,
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Sign Up  ',
+            style: TextStyle(color: AppConstant.textcolor),
           ),
-          body: Column(
+          elevation: 30,
+          centerTitle: true,
+          backgroundColor: AppConstant.appmaincolor,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
             children: [
               SizedBox(
                 height: 30,
