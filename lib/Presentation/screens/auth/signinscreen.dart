@@ -1,17 +1,22 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_print, unused_local_variable
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/Presentation/customwidget/Button.dart';
+import 'package:shoppingapp/controller/sign-in-controller.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../customwidget/Textfields.dart';
 import 'Registerscreen.dart';
 
 class Signinscreen extends StatelessWidget {
-  const Signinscreen({super.key});
+  Signinscreen({super.key});
+  final SigninController signinController = Get.put(SigninController());
+  TextEditingController Useremail = TextEditingController();
+  TextEditingController Userpassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
@@ -43,7 +48,7 @@ class Signinscreen extends StatelessWidget {
               Prefixicon: Icon(Icons.email),
               Obscuretext: false,
               type: TextInputType.emailAddress,
-              Controller: null,
+              Controller: Useremail,
             ),
             SizedBox(
               height: 20,
@@ -53,12 +58,40 @@ class Signinscreen extends StatelessWidget {
               Prefixicon: Icon(Icons.password),
               Obscuretext: true,
               type: TextInputType.text,
-              Controller: null,
+              Controller: Userpassword,
             ),
             SizedBox(
               height: 25,
             ),
-            Button(text: "Sign In ", onPressed: () {}),
+            Button(
+                text: "Sign In ",
+                onPressed: () async {
+                  String email = Useremail.text.trim();
+                  String password = Userpassword.text.trim();
+
+                  if (email.isEmpty || password.isEmpty) {
+                    Get.snackbar("Error", "Please Fill all the Details",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppConstant.appmaincolor,
+                        colorText: Colors.white);
+                  } else {
+                    UserCredential? userCredential =
+                        await signinController.SigninMethod(email, password);
+                    if (userCredential != null) {
+                      if (userCredential.user!.emailVerified) {
+                        Get.snackbar("Success", "Login Successfully!",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: AppConstant.appmaincolor,
+                            colorText: Colors.white);
+                      } else {
+                        Get.snackbar("Error", "Please Verify Your Email",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: AppConstant.appmaincolor,
+                            colorText: Colors.white);
+                      }
+                    }
+                  }
+                }),
             SizedBox(
               height: 30,
             ),

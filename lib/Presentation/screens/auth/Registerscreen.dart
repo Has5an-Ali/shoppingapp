@@ -98,7 +98,7 @@ class Registerscreen extends StatelessWidget {
                         colorText: Colors.white);
                   } else {
                     UserCredential? userCredential =
-                        await signinwithemail.SigninMethod(
+                        await signinwithemail.SignupMethod(
                             name, email, phone, password, userDeviceToken);
                   }
                   if (UserCredential != null) {
@@ -106,6 +106,10 @@ class Registerscreen extends StatelessWidget {
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: AppConstant.appmaincolor,
                         colorText: Colors.white);
+
+                    FirebaseAuth.instance.signOut();
+
+                    Get.offAll(() => Signinscreen());
                   }
                 }),
             SizedBox(

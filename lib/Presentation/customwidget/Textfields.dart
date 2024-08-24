@@ -8,7 +8,7 @@ class customtextfield extends StatelessWidget {
   final Icon? Prefixicon;
   final TextInputType type;
   final bool Obscuretext;
-  final TextEditingController? Controller;
+  final TextEditingController Controller;
 
   const customtextfield({
     super.key,

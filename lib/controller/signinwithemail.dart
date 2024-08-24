@@ -12,7 +12,7 @@ class Signinwithemail extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<UserCredential?> SigninMethod(
+  Future<UserCredential?> SignupMethod(
     String Useremail,
     String Username,
     String Userphone,
