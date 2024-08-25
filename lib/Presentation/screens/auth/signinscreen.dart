@@ -11,6 +11,7 @@ import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../customwidget/Textfields.dart';
 import 'Registerscreen.dart';
+import 'forgotpasswordscreen.dart';
 
 class Signinscreen extends StatelessWidget {
   Signinscreen({super.key});
@@ -63,6 +64,9 @@ class Signinscreen extends StatelessWidget {
             Align(
                 alignment: Alignment(0.9, 0),
                 child: InkWell(
+                  onTap: () {
+                    Get.to(() => ForgetPassword());
+                  },
                   child: Text(
                     "Forgot Password",
                     style: TextStyle(

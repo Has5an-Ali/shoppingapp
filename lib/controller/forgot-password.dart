@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:shoppingapp/Presentation/screens/auth/signinscreen.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
 class ForgotpasswordController extends GetxController {
@@ -12,16 +13,35 @@ class ForgotpasswordController extends GetxController {
     try {
       EasyLoading.show(status: "Please Wait...");
 
-      _auth.sendPasswordResetEmail(email: Useremail);
-      Get.snackbar("Send Sucessfully ", "Password Rest Link send to $Useremail",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: AppConstant.appmaincolor,
-          colorText: AppConstant.textcolor);
+      await _auth.sendPasswordResetEmail(email: Useremail);
+      Get.snackbar(
+        "Sent Successfully",
+        "Password reset link sent to $Useremail",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: AppConstant.appmaincolor,
+        colorText: AppConstant.textcolor,
+      );
+      Get.to(() => Signinscreen());
+      EasyLoading.dismiss();
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Error", "There are error in this $e",
+      EasyLoading.dismiss();
+      if (e.code == 'user-not-found') {
+        Get.snackbar(
+          "User Not Found",
+          "No user found for this email address.",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: AppConstant.appmaincolor,
-          colorText: AppConstant.textcolor);
+          colorText: AppConstant.textcolor,
+        );
+      } else {
+        Get.snackbar(
+          "Error",
+          "There was an error: $e",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: AppConstant.appmaincolor,
+          colorText: AppConstant.textcolor,
+        );
+      }
     }
   }
 }

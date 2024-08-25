@@ -11,8 +11,8 @@ import '../../../controller/forgot-password.dart';
 import '../../customwidget/Textfields.dart';
 import 'Registerscreen.dart';
 
-class Signinscreen extends StatelessWidget {
-  Signinscreen({super.key});
+class ForgetPassword extends StatelessWidget {
+  ForgetPassword({super.key});
   final ForgotpasswordController forgotpasswordController =
       Get.put(ForgotpasswordController());
   TextEditingController Useremail = TextEditingController();
