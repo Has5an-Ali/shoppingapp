@@ -6,7 +6,7 @@ import 'package:shoppingapp/utils/appconstant.dart';
 class customtextfield extends StatelessWidget {
   final String text;
   final Icon? Prefixicon;
-  final TextInputType type;
+  final TextInputType? type;
   final bool Obscuretext;
   final TextEditingController Controller;
 

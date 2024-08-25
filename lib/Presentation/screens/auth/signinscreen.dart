@@ -60,6 +60,17 @@ class Signinscreen extends StatelessWidget {
               type: TextInputType.text,
               Controller: Userpassword,
             ),
+            Align(
+                alignment: Alignment(0.9, 0),
+                child: InkWell(
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(
+                        color: AppConstant.appmaincolor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
             SizedBox(
               height: 25,
             ),
@@ -71,6 +82,11 @@ class Signinscreen extends StatelessWidget {
 
                   if (email.isEmpty || password.isEmpty) {
                     Get.snackbar("Error", "Please Fill all the Details",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppConstant.appmaincolor,
+                        colorText: Colors.white);
+                  } else if (!GetUtils.isEmail(email)) {
+                    Get.snackbar("Error", "Invalid email address",
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: AppConstant.appmaincolor,
                         colorText: Colors.white);

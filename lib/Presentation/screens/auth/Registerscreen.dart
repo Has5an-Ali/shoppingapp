@@ -53,8 +53,8 @@ class Registerscreen extends StatelessWidget {
               text: '  Email  ',
               Obscuretext: false,
               Prefixicon: Icon(Icons.email),
-              type: TextInputType.emailAddress,
               Controller: Useremail,
+              type: null,
             ),
             SizedBox(
               height: 20,
@@ -62,7 +62,7 @@ class Registerscreen extends StatelessWidget {
             customtextfield(
               text: '   Phone  ',
               Prefixicon: Icon(Icons.phone),
-              Obscuretext: true,
+              Obscuretext: false,
               type: TextInputType.phone,
               Controller: Userphone,
             ),
@@ -80,38 +80,54 @@ class Registerscreen extends StatelessWidget {
               height: 25,
             ),
             Button(
-                text: "Sign Up ",
-                onPressed: () async {
-                  String name = Username.text.trim();
-                  String email = Useremail.text.trim();
-                  String phone = Userphone.text.trim();
-                  String password = Userpassword.text.trim();
-                  String userDeviceToken = '';
+              text: "Sign Up ",
+              onPressed: () async {
+                String name = Username.text.trim();
+                String email = Useremail.text.trim();
+                String phone = Userphone.text.trim();
+                String password = Userpassword.text.trim();
+                String userDeviceToken = '';
 
-                  if (name.isEmpty ||
-                      email.isEmpty ||
-                      phone.isEmail ||
-                      password.isEmpty) {
-                    Get.snackbar("Erro", "Please Fill all Details",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: AppConstant.appmaincolor,
-                        colorText: Colors.white);
-                  } else {
+                // Validation checks
+                if (name.isEmpty ||
+                    email.isEmpty ||
+                    phone.isEmpty ||
+                    password.isEmpty) {
+                  Get.snackbar("Error", "Please fill all details",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: AppConstant.appmaincolor,
+                      colorText: Colors.white);
+                } else if (!GetUtils.isEmail(email)) {
+                  Get.snackbar("Error", "Please enter a valid email address",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: AppConstant.appmaincolor,
+                      colorText: Colors.white);
+                } else {
+                  try {
                     UserCredential? userCredential =
                         await signinwithemail.SignupMethod(
-                            name, email, phone, password, userDeviceToken);
-                  }
-                  if (UserCredential != null) {
-                    Get.snackbar("Email Verification", "Pleas check your email",
+                            email, name, phone, password, userDeviceToken);
+
+                    if (userCredential != null) {
+                      Get.snackbar(
+                          "Email Verification", "Please check your email",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: AppConstant.appmaincolor,
+                          colorText: Colors.white);
+
+                      FirebaseAuth.instance.signOut();
+
+                      Get.offAll(() => Signinscreen());
+                    }
+                  } catch (e) {
+                    Get.snackbar("Sign Up Failed", e.toString(),
                         snackPosition: SnackPosition.BOTTOM,
                         backgroundColor: AppConstant.appmaincolor,
                         colorText: Colors.white);
-
-                    FirebaseAuth.instance.signOut();
-
-                    Get.offAll(() => Signinscreen());
                   }
-                }),
+                }
+              },
+            ),
             SizedBox(
               height: 30,
             ),

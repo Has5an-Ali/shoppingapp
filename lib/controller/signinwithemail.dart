@@ -23,37 +23,42 @@ class Signinwithemail extends GetxController {
       EasyLoading.show(status: 'Please Wait..');
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-              email: Useremail, password: Userpassword);
+        email: Useremail.trim(),
+        password: Userpassword.trim(),
+      );
 
       await userCredential.user!.sendEmailVerification();
 
       UserModel userModel = UserModel(
-          uId: userCredential.user!.uid,
-          username: Username,
-          email: Useremail,
-          phone: Userphone,
-          userImg: '',
-          userDeviceToken: userDeviceToken,
-          country: '',
-          userAddress: '',
-          street: '',
-          isAdmin: false,
-          isActive: true,
-          createdOn: DateTime.now(),
-          city: '');
+        uId: userCredential.user!.uid,
+        username: Username.trim(),
+        email: Useremail.trim(),
+        phone: Userphone.trim(),
+        userImg: '',
+        userDeviceToken: userDeviceToken,
+        country: '',
+        userAddress: '',
+        street: '',
+        isAdmin: false,
+        isActive: true,
+        createdOn: DateTime.now(),
+        city: '',
+      );
 
-      firestore
+      await firestore
           .collection('User')
           .doc(userCredential.user!.uid)
           .set(userModel.toMap());
+
       EasyLoading.dismiss();
       return userCredential;
     } on FirebaseAuthException catch (e) {
       EasyLoading.dismiss();
-      Get.snackbar("Error", "$e",
+      Get.snackbar("Error", "${e.message}",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: AppConstant.appmaincolor,
           colorText: Colors.white);
+      return null;
     }
   }
 }
