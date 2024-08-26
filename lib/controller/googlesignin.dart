@@ -8,7 +8,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shoppingapp/Presentation/screens/user-panel/Main-screen.dart';
 import 'package:shoppingapp/model/usermodel.dart';
 
+import 'GetdeviceToken.dart';
+
 class GoogleSiginController extends GetxController {
+  final GetDeviceTokenController getDeviceTokenController =
+      Get.put(GetDeviceTokenController());
   final GoogleSignIn googlesignin = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -39,7 +43,7 @@ class GoogleSiginController extends GetxController {
               email: user.email.toString(),
               phone: user.phoneNumber.toString(),
               userImg: user.photoURL.toString(),
-              userDeviceToken: '',
+              userDeviceToken: getDeviceTokenController.DeviceToken.toString(),
               country: '',
               userAddress: '',
               street: '',

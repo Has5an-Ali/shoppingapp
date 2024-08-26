@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shoppingapp/Presentation/customwidget/Button.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
-import '../../../controller/signinwithemail.dart';
+import '../../../controller/signwithemail.dart';
 import '../../customwidget/Textfields.dart';
 import 'signinscreen.dart';
 

@@ -1,14 +1,19 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shoppingapp/Presentation/screens/user-panel/Main-screen.dart';
 import 'package:shoppingapp/model/usermodel.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
 
+import 'GetdeviceToken.dart';
+
 class Signinwithemail extends GetxController {
+  final GetDeviceTokenController getDeviceTokenController =
+      Get.put(GetDeviceTokenController());
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -35,7 +40,7 @@ class Signinwithemail extends GetxController {
         email: Useremail.trim(),
         phone: Userphone.trim(),
         userImg: '',
-        userDeviceToken: userDeviceToken,
+        userDeviceToken: getDeviceTokenController.DeviceToken.toString(),
         country: '',
         userAddress: '',
         street: '',
@@ -51,6 +56,7 @@ class Signinwithemail extends GetxController {
           .set(userModel.toMap());
 
       EasyLoading.dismiss();
+      Get.to(() => Mainscreen());
       return userCredential;
     } on FirebaseAuthException catch (e) {
       EasyLoading.dismiss();
