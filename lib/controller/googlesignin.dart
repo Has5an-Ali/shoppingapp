@@ -53,7 +53,7 @@ class GoogleSiginController extends GetxController {
               city: '');
 
           FirebaseFirestore.instance
-              .collection('users')
+              .collection('User')
               .doc(user.uid)
               .set(userModel.toMap());
           EasyLoading.dismiss();

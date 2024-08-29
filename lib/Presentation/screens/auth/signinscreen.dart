@@ -164,7 +164,7 @@
 //   }
 // }
 
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_print, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_print, unused_local_variable, unrelated_type_equality_checks
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -250,61 +250,87 @@ class Signinscreen extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            Button(
-                text: "Sign In",
-                onPressed: () async {
-                  String email = Useremail.text.trim();
-                  String password = Userpassword.text.trim();
+            TextButton(
+              child: Text(
+                "SIGN IN",
+                style: TextStyle(color: AppConstant.appmaincolor),
+              ),
+              onPressed: () async {
+                String email = Useremail.text.trim();
+                String password = Userpassword.text.trim();
 
-                  if (email.isEmpty || password.isEmpty) {
-                    Get.snackbar("Error", "Please Fill all the Details",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: AppConstant.appmaincolor,
-                        colorText: Colors.white);
-                  } else if (!GetUtils.isEmail(email)) {
-                    Get.snackbar("Error", "Invalid email address",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: AppConstant.appmaincolor,
-                        colorText: Colors.white);
-                  } else {
+                if (email.isEmpty || password.isEmpty) {
+                  Get.snackbar(
+                    "Error",
+                    "Please enter all details",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: AppConstant.appmaincolor,
+                    colorText: AppConstant.textcolor,
+                  );
+                } else {
+                  try {
                     UserCredential? userCredential =
                         await signinController.SigninMethod(email, password);
 
                     if (userCredential != null) {
+                      // Fetch user data from Firebase
                       var userData = await getUserDataController.GetdataMethod(
                           userCredential.user!.uid);
+                      print(
+                          "Fetched User Data: $userData"); // Debug print to check the fetched data
 
-                      if (userData.isNotEmpty) {
-                        if (userCredential.user!.emailVerified) {
-                          if (userData[0]['isAdmin'] == true) {
-                            Get.snackbar("Admin Success", "Login Successfully!",
-                                snackPosition: SnackPosition.BOTTOM,
-                                backgroundColor: AppConstant.appmaincolor,
-                                colorText: Colors.white);
-                            Get.off(() => Adminscreen());
-                          } else {
-                            Get.offAll(Mainscreen());
-                          }
-
-                          Get.snackbar("Success", "Login Successfully!",
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: AppConstant.appmaincolor,
-                              colorText: Colors.white);
-                        } else {
-                          Get.snackbar("Error", "Please Verify Your Email",
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: AppConstant.appmaincolor,
-                              colorText: Colors.white);
-                        }
-                      } else {
-                        Get.snackbar("Error", "User data not found",
+                      if (userCredential.user!.emailVerified) {
+                        if (userData != null &&
+                            userData.isNotEmpty &&
+                            userData[0]['isAdmin'] == true) {
+                          Get.snackbar(
+                            "Success Admin Login",
+                            "Login Successfully!",
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundColor: AppConstant.appmaincolor,
-                            colorText: Colors.white);
+                            colorText: AppConstant.textcolor,
+                          );
+                          Get.offAll(() => Adminscreen());
+                        } else {
+                          Get.offAll(() => Mainscreen());
+                          Get.snackbar(
+                            "Success User Login",
+                            "Login Successfully!",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: AppConstant.appmaincolor,
+                            colorText: AppConstant.textcolor,
+                          );
+                        }
+                      } else {
+                        Get.snackbar(
+                          "Error",
+                          "Please verify your email before login",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: AppConstant.appmaincolor,
+                          colorText: AppConstant.textcolor,
+                        );
                       }
+                    } else {
+                      Get.snackbar(
+                        "Error",
+                        "Sign in failed, please try again",
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: AppConstant.appmaincolor,
+                        colorText: AppConstant.textcolor,
+                      );
                     }
+                  } catch (e) {
+                    Get.snackbar(
+                      "Error",
+                      "An unexpected error occurred: $e",
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: AppConstant.appmaincolor,
+                      colorText: AppConstant.textcolor,
+                    );
                   }
-                }),
+                }
+              },
+            ),
             SizedBox(
               height: 30,
             ),
