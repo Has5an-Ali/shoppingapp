@@ -178,7 +178,7 @@ import 'package:shoppingapp/utils/appconstant.dart';
 
 import '../../../controller/Getuserdata.dart';
 import '../../customwidget/Textfields.dart';
-import '../admin_panel/Adminscreen.dart';
+import '../admin_panel/AdminMainScreen.dart';
 import 'Registerscreen.dart';
 import 'forgotpasswordscreen.dart';
 
