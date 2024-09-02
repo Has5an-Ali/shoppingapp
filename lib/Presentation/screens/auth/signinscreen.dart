@@ -195,6 +195,7 @@ class Signinscreen extends StatelessWidget {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: AppConstant.textcolor),
           title: Text(
             'Sign In',
             style: TextStyle(color: AppConstant.textcolor),
@@ -250,11 +251,8 @@ class Signinscreen extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            TextButton(
-              child: Text(
-                "SIGN IN",
-                style: TextStyle(color: AppConstant.appmaincolor),
-              ),
+            Button(
+              text: "Sign In ",
               onPressed: () async {
                 String email = Useremail.text.trim();
                 String password = Userpassword.text.trim();

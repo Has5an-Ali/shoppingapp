@@ -25,6 +25,7 @@ class Registerscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: AppConstant.textcolor),
         title: Text(
           'Sign Up  ',
           style: TextStyle(color: AppConstant.textcolor),

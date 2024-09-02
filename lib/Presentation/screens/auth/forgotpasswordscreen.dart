@@ -22,6 +22,7 @@ class ForgetPassword extends StatelessWidget {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: AppConstant.textcolor),
           title: Text(
             'Forgot Password ',
             style: TextStyle(color: AppConstant.textcolor),

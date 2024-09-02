@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shoppingapp/Presentation/screens/auth/Welcomescreen.dart';
 import 'package:shoppingapp/utils/appconstant.dart';
+import 'package:shoppingapp/widget/Custom-drawer-widget.dart';
+
+import '../../../widget/BannerWidget.dart';
 
 class Mainscreen extends StatelessWidget {
   const Mainscreen({super.key});
@@ -12,17 +15,17 @@ class Mainscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: AppConstant.textcolor),
         title: Text(
           "Sopping App",
           style: TextStyle(color: AppConstant.textcolor),
         ),
         backgroundColor: AppConstant.appmaincolor,
-        actions: [
-          InkWell(
-              onTap: () {
-                Get.offAll(() => Welcomescreen());
-              },
-              child: Icon(Icons.logout))
+      ),
+      drawer: DrawerWidget(),
+      body: Column(
+        children: [
+          Bannerwidget(),
         ],
       ),
     );
